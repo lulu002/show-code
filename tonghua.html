@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0048)http://www.makerstory.cn/oupai/oupai/tonghua.php -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">   
+  <link href="http://www.makerstory.cn/oupai/oupai/public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://www.makerstory.cn/oupai/oupai/public/css/tonghua.css" rel="stylesheet">
+  <script src="./public/jquery.js"></script>
+  <title>约吗？</title>
+	</head><style type="text/css" id="1277776000"></style><body style=""><div id="wx_pic" style="margin:0 auto;display:none;">
+		<img src="./public/logo2.png">
+	</div>
+
+   
+<!-- 播放音频 -->
+      <script>
+      var audio = document.createElement("audio"); 
+      var index = 0;
+      audio.src = "public/sound1.mp3";  
+  </script>
+  <!-- 播放音频 -->
+      <div id="container" class="container-fuild bg">
+        <div class="chatTime tonghua_dumiao">
+            <span>正在通话</span>
+            <span class="second">00:14</span>
+          </div>
+ 
+          <div class="img tonghua_dumiao">
+              <div class="kj">
+                  <img src="./public/sunli.png" alt="">                  
+              </div>
+                <!-- <canvas class="canvas" id="canvas_1" width="150" height="150"></canvas> -->
+          </div>
+
+           <div class="nt">
+              <p class="name"><strong>覃璐</strong></p>
+              <p><span>中国</span><span style="margin-left:5px;">广州</span></p>
+          </div>
+          
+          <div class="">
+            <img src="./public/jt.png" class="pad" alt="">
+            <!-- 挂断后跳转到另外的页面 -->
+          
+          </div>
+            <a href="chat.html"><img src="./public/anniu.png" class="anniu" alt=""></a>
+      </div>
+	<!-- <div id="loading" style="position:absolute;left:0%;top:40%;width:100%;">
+    <p style="text-align:center;width:100%">
+      <img src="public/images/loading.gif" style="width:5%">
+    </p>
+  </div> -->
+
+ 
+
+
+      <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+      <script src="./public/jquery.js"></script>
+      <!-- 包括所有已编译的插件 -->
+      <script src="./public/bootstrap.min.js"></script> 
+      <div style="display:none;">
+        <script src="./public/z_stat.php" language="JavaScript"></script><script src="./public/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1256197672" target="_blank" title="站长统计">站长统计</a>
+      </div> 
+
+
+ 
+   
+  <script>
+  
+  window.onload=function(){
+        audio.play(); 
+		// document.getElementById("container").style.display="block";
+		// document.getElementById("loading").style.display="none";
+		countdown();
+  }
+  
+  
+           $(function(){
+    // 根据手机屏幕，缩放container
+    var $win = $(window),
+    $container = $("#container");   
+    function scaleContainer(){
+        var nWinW = $win.width(),
+            nWinH = $win.height(),
+            nScaleW,
+            nScaleH;
+
+        if(nWinH <= 480){
+          if(nWinW > 640){
+              nWinW = 640;
+          }
+          if(nWinH > 1136){
+              nWinH = 1056;
+          }
+
+          nScaleW = nWinW/640;
+          nScaleH = nWinH/1056;
+
+          $container.css({
+              '-webkit-transform':'scale(' + nScaleW+',' + nScaleH+')',
+              'transform':'scale(' + nScaleW+',' + nScaleH+')'
+          });
+        }
+        
+    }
+
+    scaleContainer();
+
+    $win.resize(scaleContainer);
+})
+  </script>
+
+<script>
+function countdown(){
+   var $second = $(".second"),
+              secNum = 0;
+            var secTimer = setInterval(function(){
+              if(secNum < 27){
+                secNum ++;
+                var text = secNum < 10 ? "0" + secNum : secNum;
+                $second.text("00:" + text);
+              }else{
+
+                clearInterval(secTimer);
+
+                // 读秒（35）之后直接跳转到宣传页面
+                window.location.href="chat.html";
+              }
+            },1000);
+}
+
+            // 实时更新的圆弧
+         /*   var canvas_1 = document.getElementById("canvas_1"),
+            ctx_1 = canvas_1.getContext('2d');
+            ctx_1.beginPath();
+            ctx_1.arc(74,74,74,0,Math.PI*2);
+            ctx_1.stroke();
+            ctx_1.closePath();
+            ctx_1.strokeStyle = "#fff";
+            ctx_1.lineWidth = 1.5;
+
+            var arc = -0.4,
+              n = 1.8 / 600;
+            
+            var arcTimer = setInterval(function(){
+              if(arc < 1.4){
+                arc += n;
+                ctx_1.beginPath();
+                ctx_1.arc(74,74,74,-0.6*Math.PI,Math.PI*arc);
+                ctx_1.stroke();
+                ctx_1.closePath();
+              }else{
+                clearInterval(arcTimer);
+              }
+            },50);
+*/
+</script>
+</body></html>

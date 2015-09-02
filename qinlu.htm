@@ -1,0 +1,264 @@
+
+<!-- saved from url=(0037)http://www.makerstory.cn/oupai/oupai/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">   
+  <link href="http://www.makerstory.cn/oupai/oupai/public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://www.makerstory.cn/oupai/oupai/public/css/index.css" rel="stylesheet">
+  <script src="./public/jquery.js"></script>
+  <script src="./public/swiper.jquery.min.js"></script>
+  <script type="text/javascript" src="./public/swiper.min.js"></script>
+  <title>约吗？</title>
+	</head><style type="text/css" id="222746000"></style><body style=""><div id="wx_pic" style="margin:0 auto;display:none;">
+		<img src="./public/logo2.png">
+	</div>
+
+
+
+   <div id="container" style="display: block;">
+        <img src="./public/bg1.jpg" id="img" class="w" alt=""> 
+        <!-- 播放声音开始 -->
+		 <audio id="k_ring" preload="load" loop="loop" style="display:none;">
+			  <source type="audio/mpeg" src="public/ring.mp3">
+		 </audio>
+        <div class="img">
+              <div class="kj">
+                  <img src="./public/sunli.png" alt="">
+              </div>
+        </div>
+          
+          <div class="nt">
+              <p class="name"><strong>Robinson</strong></p>
+              <p><span>中国</span><span style="margin-left:5px;">广州</span></p>
+          </div>
+          <div class="tongh">
+            <img src="./public/phone1.png" alt="">
+          </div>
+        <div class="jieting">
+            <div class="jieting_btn">
+                <div class="btn_inner"></div>
+            </div>
+      </div>
+   </div>
+   <div id="loading" style="position: absolute; left: 0%; top: 40%; width: 100%; display: none;">
+		<p style="text-align:center;width:100%">
+			<img src="./public/loading.gif" style="width:5%">
+		</p>
+	</div>
+  <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+      <script src="./public/jquery.js"></script>
+      <!-- 包括所有已编译的插件 -->
+      <script src="./public/bootstrap.min.js"></script>  
+ 
+
+ 
+ 
+ 
+<script>
+
+ window.onload=function(){
+        var k=document.getElementById("k_ring");
+		k.play();
+		document.getElementById("container").style.display="block";
+		document.getElementById("loading").style.display="none";
+
+  }
+
+</script>
+<script type="text/javascript">
+
+  $(function(){
+
+    // 根据手机屏幕，缩放container
+    var $win = $(window),
+      $container = $("#container");
+      
+    function scaleContainer(){
+        var nWinW = $win.width(),
+            nWinH = $win.height(),
+            nScaleW,
+            nScaleH;
+
+        if(nWinH <= 480){
+          if(nWinW > 640){
+              nWinW = 640;
+          }
+          if(nWinH > 1136){
+              nWinH = 1056;
+          }
+
+          nScaleW = nWinW/640;
+          nScaleH = nWinH/1056;
+
+          $container.css({
+              '-webkit-transform':'scale(' + nScaleW+',' + nScaleH+')',
+              'transform':'scale(' + nScaleW+',' + nScaleH+')'
+          });
+        }
+        
+    }
+
+    scaleContainer();
+
+    $win.resize(scaleContainer);
+
+
+    // 挂断之后直接跳转到宣传页面
+    $(document).on("touchstart",".hungUp_btn",function(){
+      // k_audio.pause();
+      window.location.href="chat.html";
+    });
+
+    $(document).on("touchstart",function(e){
+      e.preventDefault();
+    });
+
+    var $jieting = $(".jieting"),
+      $jietingBtn = $(".jieting_btn"),
+      $tonghua = $(".tonghua"),
+      oLeft = $jietingBtn.position().left,  // 初始值
+      nLeft,  
+      nFix;   // 修正值
+
+    $jietingBtn.on("touchstart",function(e){
+      e.preventDefault();
+
+      if(e.originalEvent){
+        e = e.originalEvent;
+      }
+      var $this = $(this),
+        touch = e.touches[0],
+        nStartLeft = touch.pageX;
+
+      nLeft = $this.position().left;
+      nFix = nStartLeft - nLeft;
+
+      $this.addClass("jieting_down");
+
+      $(document).on("touchmove",function(e){
+
+        if(e.originalEvent){
+          e = e.originalEvent;
+        }
+
+        var touch = e.touches[0];
+
+        nLeft = touch.pageX - nFix;
+
+        if(nLeft <= 56){
+          // nLeft = -40;
+          location.href="chat.php";
+        }
+        if(nLeft >= 230){
+          // nLeft = 400;
+          location.href="tonghua.html";
+        }
+
+        $jietingBtn.css({'left':nLeft});
+
+      }).on("touchend",function(e){
+
+        $jietingBtn.removeClass("jieting_down");
+
+        if(nLeft <= -15 || nLeft >= 380) {
+          if(nLeft <= 15) {    // 挂断电话，跳转到信息页面
+            $(".top").hide();
+            $(".jieting").hide();
+            $(".message").addClass("message_on");
+            
+            setTimeout(function(){
+              // k_msg.play();
+              $(".msg_01").fadeIn(200);
+            },600);
+            setTimeout(function(){
+              // k_msg2.play();
+              $(".msg_02").fadeIn(200);
+            },2000);
+            setTimeout(function(){
+              window.location.href="answer.php?power=1";
+            },4200);
+          }
+          if(nLeft >= 380){    // 接听电话，播放录音
+
+            setTimeout(function(){
+              // k_audio.play();
+            },800);
+            
+
+            $(".tonghua_dumiao").show();
+            $(".touxiang_circle").hide();
+
+            // 通话读秒圆弧背景
+            var canvas_1 = document.getElementById("canvas_1"),
+              ctx_1 = canvas_1.getContext('2d');
+
+            ctx_1.strokeStyle = "#aaa";
+            ctx_1.lineWidth = 3;
+            ctx_1.beginPath();
+            ctx_1.arc(130,130,124,-0.4*Math.PI,Math.PI*1.4);
+            ctx_1.stroke();
+            ctx_1.closePath();
+
+            // 实时更新的圆弧
+            var canvas_2 = document.getElementById("canvas_1"),
+              ctx_2 = canvas_2.getContext('2d');
+
+            ctx_2.strokeStyle = "#fff2b7";
+            ctx_2.lineWidth = 3;
+
+            var arc = -0.4,
+              n = 1.8 / 600;
+            
+            var arcTimer = setInterval(function(){
+              if(arc < 1.4){
+                arc += n;
+                ctx_2.beginPath();
+                ctx_2.arc(130,130,124,-0.4*Math.PI,Math.PI*arc);
+                ctx_2.stroke();
+                ctx_2.closePath();
+              }else{
+                clearInterval(arcTimer);
+              }
+            },50);
+
+            // 通话读秒
+            var $second = $(".second"),
+              secNum = 0;
+            var secTimer = setInterval(function(){
+              if(secNum < 30){
+                secNum ++;
+                var text = secNum < 10 ? "0" + secNum : secNum;
+                $second.text("00:" + text);
+              }else{
+
+                clearInterval(secTimer);
+
+                // 读秒（30）之后直接跳转到宣传页面
+                window.location.href="answer.php?power=1";
+              }
+            },1000);
+            
+            setTimeout(function(){    // 延迟出现键盘
+              $(".keybord").addClass("keybordUp");
+              $tonghua.addClass("tonghua_show");
+            },200);
+          }
+
+          $jieting.fadeOut(200);
+          k_ring.pause();
+
+        }else{
+          $this.css({"left": oLeft});
+        }
+
+        // 取消document上的touchmove事件
+        $(document).off("touchmove").off("touchend");
+      });
+
+    });
+
+  });
+  
+  </script>
+      
+</body></html>

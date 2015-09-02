@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0045)http://www.makerstory.cn/oupai/oupai/chat.php -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><style type="text/css" id="1781181000"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">   
+  <link href="http://www.makerstory.cn/oupai/oupai/public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://www.makerstory.cn/oupai/oupai/public/css/chat.css" rel="stylesheet">
+  <script src="./public/jquery.js"></script>
+  <title>约吗？</title>
+	</head><body style=""><div id="wx_pic" style="margin:0 auto;display:none;">
+		<img src="./public/logo2.png">
+	</div>
+
+   
+
+   <div id="all" class="container-fuild all clearfix">
+      <audio id="k_ring" preload="load" autoplay="false" style="display:none;">
+          <source type="audio/mpeg" src="public/msg2.mp3">
+      </audio>
+
+          
+          <div class="content clearfix" id="one" style="display: block;">
+            <div><img src="./public/one.png" alt=""></div>
+        </div>
+        <div class="content clearfix" id="two">
+            <div><img src="./public/two.png" alt=""></div>
+        </div>
+        <div class="content clearfix" id="three">
+            <div><img src="./public/three.png" alt=""></div>
+        </div>
+
+
+        <div class="send">
+          <img src="./public/send.png" alt="">
+        </div>
+   </div>
+   	
+      <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+      <script src="./public/jquery.js"></script>
+      <!-- 包括所有已编译的插件 -->
+      <script src="./public/bootstrap.min.js"></script>  
+  
+
+<script>
+  var one=document.getElementById('one');
+  var two=document.getElementById('two');
+  var three=document.getElementById('three');
+  window.onload=function(){
+
+    setTimeout(function(){
+      one.style.display="block";
+      document.getElementById("k_ring").play();
+    },00)
+    setTimeout(function(){
+        two.style.display="block";
+        document.getElementById("k_ring").play();
+    },1500)
+    setTimeout(function(){
+        three.style.display="block";
+        document.getElementById("k_ring").play();
+    },3000)
+     setTimeout(function(){
+    window.location.href="http://news.163.com/15/0902/09/B2GEVMV60001124J.html";
+  },5000)
+  } 
+ 
+</script>
+
+ </body></html>
